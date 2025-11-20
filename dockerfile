@@ -41,3 +41,6 @@ EXPOSE 10000
 
 # Commande de démarrage
 CMD php artisan serve --host=0.0.0.0 --port=10000
+
+
+RUN docker-php-ext-install pdo pdo_pgsql
