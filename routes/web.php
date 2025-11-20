@@ -27,3 +27,12 @@ Route::resource('universities', UniversityController::class);
 
 // 📍 Sites
 Route::resource('sites', SiteController::class);
+
+Route::get('/test', function () {
+    return 'Laravel fonctionne ✅';
+});
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
