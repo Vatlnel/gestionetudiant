@@ -9,7 +9,6 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AdminAuthController;
 
 
-use Illuminate\Support\Facades\DB;
 
 // 🏠 Page d’accueil / dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -32,37 +31,3 @@ Route::resource('universities', UniversityController::class);
 Route::resource('sites', SiteController::class);
 
 
-
-
-Route::get('/debug', function () {
-    try {
-        return Student::count();
-    } catch (\Exception $e) {
-        return $e->getMessage();
-    }
-});
-
-
-
-use App\Models\Admin;
-
-Route::get('/debug-admin', function () {
-    try {
-        return "Admin count: " . Admin::count();
-    } catch (\Exception $e) {
-        return "Erreur: " . $e->getMessage();
-    }
-});
-
-
-
-
-
-Route::get('/debug-db', function () {
-    try {
-        DB::connection()->getPdo();
-        return "Connexion OK à PostgreSQL";
-    } catch (\Exception $e) {
-        return "Erreur DB : " . $e->getMessage();
-    }
-});
