@@ -30,7 +30,6 @@ Route::resource('sites', SiteController::class);
 
 
 
-use App\Models\Student;
 
 Route::get('/debug', function () {
     try {
