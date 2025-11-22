@@ -19,17 +19,8 @@ COPY . .
 # Installer les dépendances Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Nettoyer et mettre en cache la config
-RUN php artisan config:clear && php artisan config:cache
-
-# Exécuter les migrations au build
-RUN php artisan migrate --force
-
 # Exposer le port
 EXPOSE 10000
 
 # Commande de démarrage
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000"]
-
-RUN chmod +x build.sh
-RUN ./build.sh
