@@ -28,3 +28,14 @@ Route::resource('universities', UniversityController::class);
 // 📍 Sites
 Route::resource('sites', SiteController::class);
 
+
+
+use App\Models\Student;
+
+Route::get('/debug', function () {
+    try {
+        return Student::count();
+    } catch (\Exception $e) {
+        return $e->getMessage();
+    }
+});
