@@ -38,3 +38,15 @@ Route::get('/debug', function () {
         return $e->getMessage();
     }
 });
+
+
+
+use App\Models\Admin;
+
+Route::get('/debug-admin', function () {
+    try {
+        return "Admin count: " . Admin::count();
+    } catch (\Exception $e) {
+        return "Erreur: " . $e->getMessage();
+    }
+});
