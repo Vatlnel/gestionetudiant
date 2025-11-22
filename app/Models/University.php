@@ -6,18 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class University extends Model
 {
-     protected $fillable = [
-        'name',
-        'address',
-    ];
+    protected $table = 'universities';
+    protected $fillable = ['name', 'address'];
 
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
 
-
-    public function sites() {
-    return $this->hasMany(Site::class);
-}
-
-public function filieres() {
-    return $this->hasMany(Filiere::class);
-}
+    public function filieres()
+    {
+        return $this->hasMany(Filiere::class);
+    }
 }
