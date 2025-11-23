@@ -11,22 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('filiere_id')
-                  ->constrained('filieres')
-                  ->onDelete('cascade');
-            $table->foreignId('site_id')
-                  ->nullable()
-                  ->constrained('sites')
-                  ->onDelete('cascade');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('matricule')->unique();
-            $table->date('date_of_birth');
-            $table->timestamps();
-        });
+   Schema::create('students', function (Blueprint $table) {
+    $table->id();
+    $table->string('first_name');
+    $table->string('last_name');
+    $table->string('email')->unique();
+    $table->string('matricule')->unique();
+    $table->date('date_of_birth');
+    $table->foreignId('university_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('site_id')->constrained()->cascadeOnDelete();
+    $table->foreignId('filiere_id')->constrained()->cascadeOnDelete();
+     $table->foreignId('annee_id')->nullable()->constrained()->onDelete('set null');
+    $table->timestamps();
+});
     }
 
     /**

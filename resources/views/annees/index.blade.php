@@ -1,35 +1,36 @@
 @extends('layout')
 
 @section('content')
-<h2>Liste des filières</h2>
-<a href="{{ route('filieres.create') }}" class="btn btn-primary mb-3">
-    <i class="bi bi-plus-circle"></i> Ajouter une filière
+<h2>Liste des années</h2>
+<a href="{{ route('annees.create') }}" class="btn btn-primary mb-3">
+    <i class="bi bi-plus-circle"></i> Ajouter une année
 </a>
 
 <table class="table table-bordered table-striped align-middle">
     <thead>
         <tr>
-            <th>Nom</th>
-            <th>Code</th>
+            <th>Nom de l'année</th>
             <th class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($filieres as $filiere)
+        @foreach($annees as $annee)
         <tr>
-            <td>{{ $filiere->name }}</td>
-            <td>{{ $filiere->code }}</td>
+            <td>{{ $annee->name }}</td>
             <td class="text-center">
-                <a href="{{ route('filieres.edit', $filiere) }}" class="btn btn-sm btn-warning">
+                {{-- Bouton Modifier --}}
+                <a href="{{ route('annees.edit', $annee) }}" class="btn btn-sm btn-warning">
                     <i class="bi bi-pencil-square"></i>
                 </a>
+
+                {{-- Bouton Supprimer avec modal --}}
                 <button 
                     type="button" 
                     class="btn btn-sm btn-danger"
                     data-bs-toggle="modal" 
                     data-bs-target="#confirmDeleteModal"
-                    data-filiere-name="{{ $filiere->name }}"
-                    data-action="{{ route('filieres.destroy', $filiere) }}"
+                    data-annee-name="{{ $annee->name }}"
+                    data-action="{{ route('annees.destroy', $annee) }}"
                 >
                     <i class="bi bi-trash"></i>
                 </button>
@@ -55,13 +56,13 @@
         </svg>
 
         <p class="mb-2">
-          Voulez-vous vraiment supprimer la filière <strong id="filiereNameLabel"></strong> ?
+          Voulez-vous vraiment supprimer l’année <strong id="anneeNameLabel"></strong> ?
         </p>
         <p class="text-muted small">Cette action est irréversible.</p>
       </div>
       <div class="modal-footer border-0 justify-content-between">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-        <form id="deleteFiliereForm" method="POST" class="d-inline">
+        <form id="deleteAnneeForm" method="POST" class="d-inline">
           @csrf
           @method('DELETE')
           <button type="submit" class="btn btn-danger">Supprimer</button>
@@ -76,15 +77,15 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const confirmModal = document.getElementById('confirmDeleteModal');
-  const filiereNameLabel = document.getElementById('filiereNameLabel');
-  const deleteForm = document.getElementById('deleteFiliereForm');
+  const anneeNameLabel = document.getElementById('anneeNameLabel');
+  const deleteForm = document.getElementById('deleteAnneeForm');
 
   confirmModal.addEventListener('show.bs.modal', function (event) {
     const button = event.relatedTarget;
-    const filiereName = button.getAttribute('data-filiere-name');
+    const anneeName = button.getAttribute('data-annee-name');
     const action = button.getAttribute('data-action');
 
-    filiereNameLabel.textContent = filiereName;
+    anneeNameLabel.textContent = anneeName;
     deleteForm.setAttribute('action', action);
   });
 });

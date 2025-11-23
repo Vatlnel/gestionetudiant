@@ -1,26 +1,14 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Site extends Model
 {
-    protected $table = 'sites';
-    protected $fillable = ['name', 'address', 'university_id'];
+    protected $fillable = ['name', 'address'];
 
-    public function university()
+    public function universities()
     {
-        return $this->belongsTo(University::class);
-    }
-
-    public function filieres()
-    {
-        return $this->hasMany(Filiere::class);
-    }
-
-    public function students()
-    {
-        return $this->hasMany(Student::class);
+        return $this->belongsToMany(University::class, 'site_university');
     }
 }
+

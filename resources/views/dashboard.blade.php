@@ -43,47 +43,15 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-calendar3"></i> Années</h5>
+                <p class="card-text fs-4">{{ $anneeCount }}</p>
+                <a href="{{ route('annees.index') }}" class="btn btn-light btn-sm">Voir</a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<canvas id="dashboardChart" width="400" height="200"></canvas>
 @endsection
-
-@push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const ctx = document.getElementById('dashboardChart').getContext('2d');
-    const dashboardChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Étudiants', 'Filières', 'Universités', 'Sites'],
-            datasets: [{
-                label: 'Nombre total',
-                data: [{{ $studentCount }}, {{ $filiereCount }}, {{ $universityCount }}, {{ $siteCount }}],
-                backgroundColor: [
-                    'rgba(13, 110, 253, 0.7)',
-                    'rgba(25, 135, 84, 0.7)',
-                    'rgba(255, 193, 7, 0.7)',
-                    'rgba(220, 53, 69, 0.7)'
-                ],
-                borderColor: [
-                    'rgba(13, 110, 253, 1)',
-                    'rgba(25, 135, 84, 1)',
-                    'rgba(255, 193, 7, 1)',
-                    'rgba(220, 53, 69, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
-                    }
-                }
-            }
-        }
-    });
-</script>
-@endpush

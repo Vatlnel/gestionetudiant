@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    {{-- Barre de navigation --}}
     <nav class="navbar navbar-dark bg-dark mb-0">
         <div class="container-fluid">
             <span class="navbar-brand">Tableau de bord</span>
@@ -16,15 +17,14 @@
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-
-            <li class="nav-item mb-2">
-    <a class="nav-link" href="{{ route('dashboard') }}">
-        <i class="bi bi-house-door"></i> Accueil
-    </a>
-            </li>
+            {{-- Sidebar --}}
             <div class="col-md-3 bg-light vh-100 p-3 border-end">
                 <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="bi bi-house-door"></i> Accueil
+                        </a>
+                    </li>
                     <li class="nav-item mb-2">
                         <a class="nav-link" href="{{ route('students.index') }}">
                             <i class="bi bi-person-lines-fill"></i> Étudiants
@@ -45,10 +45,15 @@
                             <i class="bi bi-geo-alt"></i> Sites
                         </a>
                     </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="{{ route('annees.index') }}">
+                            <i class="bi bi-geo-alt"></i> Niveaux
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            <!-- Contenu principal -->
+            {{-- Contenu principal --}}
             <div class="col-md-9 p-4">
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
@@ -58,5 +63,11 @@
             </div>
         </div>
     </div>
+
+    {{-- Scripts JS globaux --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    {{-- ⚠️ Important : permet d’injecter les scripts des vues --}}
+    @stack('scripts')
 </body>
 </html>

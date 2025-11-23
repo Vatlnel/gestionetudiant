@@ -7,7 +7,7 @@ use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AdminAuthController;
-
+use App\Http\Controllers\AnneeController;
 
 
 
@@ -37,3 +37,12 @@ Route::resource('sites', SiteController::class);
 
 
 
+// Routes AJAX pour charger sites et filières
+Route::get('/universities/{university}/sites', [UniversityController::class, 'getSites']);
+Route::get('/universities/{university}/filieres', [UniversityController::class, 'getFilieres']);
+Route::get('/sites/{site}/universities', [SiteController::class, 'getUniversities']);
+
+
+
+
+Route::resource('annees', AnneeController::class);
