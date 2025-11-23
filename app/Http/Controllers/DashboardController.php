@@ -20,7 +20,13 @@ class DashboardController extends Controller
         $filiereCount    = Filiere::count();
         $universityCount = University::count();
         $siteCount       = Site::count();
+        try {
+
         $anneeCount      = Annee::count();
+    $anneeCount = \App\Models\Annee::count();
+} catch (\Exception $e) {
+    $anneeCount = 0; // 👈 valeur par défaut si la table n'existe pas
+}
 
         // Envoi des données à la vue
         return view('dashboard', compact(
