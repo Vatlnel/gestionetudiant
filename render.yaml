@@ -18,6 +18,10 @@ services:
         fromDatabase:
           name: oswald
           property: connectionString
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan migrate --force
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
 
 databases:
   - name: oswald
