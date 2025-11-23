@@ -26,3 +26,5 @@ services:
         value: oswald
       - key: DB_PASSWORD
         value: JvoPQLfj3PObuLugO7VX42dsTnqg2IeI
+
+

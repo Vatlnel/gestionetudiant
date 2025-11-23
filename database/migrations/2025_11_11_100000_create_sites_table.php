@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up()
-{
-    Schema::table('students', function (Blueprint $table) {
-        $table->foreignId('annee_id')->nullable()->constrained()->onDelete('set null');
-    });
-}
+    public function up(): void
+    {
+       Schema::create('sites', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::table('students', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('sites');
     }
 };
