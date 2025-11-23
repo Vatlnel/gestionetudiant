@@ -1,30 +1,28 @@
 services:
   - type: web
-    name: gestion_etudiants
-    env: docker
+    name: gestionetudiant-2
+    env: php
     plan: free
-    branch: main
-    dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: "php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT"
     envVars:
-      - key: APP_KEY
-        value: ton_app_key
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
+      - key: APP_KEY
+        value: base64:Nrn6tsSVkrwaB2TnS13Bm3FFT4yBAjxkmk2qnub3L3Y=
+      - key: APP_URL
+        value: https://gestionetudiant-2.onrender.com
       - key: DB_CONNECTION
         value: pgsql
-      - key: DATABASE_URL
-        fromDatabase:
-          name: oswald
-          property: connectionString
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      php artisan migrate --force
-    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
-
-databases:
-  - name: oswald
-    plan: free
-    databaseName: laravel
-    user: laravel
+      - key: DB_HOST
+        value: dpg-d4dh0eq4d50c73dourhg-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: gestion_etudiants_gahl
+      - key: DB_USERNAME
+        value: oswald
+      - key: DB_PASSWORD
+        value: JvoPQLfj3PObuLugO7VX42dsTnqg2IeI
